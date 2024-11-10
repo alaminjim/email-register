@@ -23,11 +23,14 @@ const SignUp = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+    console.log(e.target);
+
     console.log(email, password);
 
     setErr("");
     setSuccess(false);
-    // setInOut(true);
+    setInOut(true);
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -38,6 +41,7 @@ const SignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         console.log(result.user);
+        e.target.reset();
         setSuccess(true);
         setInOut(true);
       })

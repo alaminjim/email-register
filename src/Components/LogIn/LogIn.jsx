@@ -1,6 +1,7 @@
 import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import auth from "../../firebase/firebase.init";
 import { useRef, useState } from "react";

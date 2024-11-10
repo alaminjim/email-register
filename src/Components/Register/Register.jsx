@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase/firebase.init";
@@ -12,6 +13,16 @@ const Register = () => {
   const [err, setErr] = useState("");
   const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  const handelSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("sign out");
+      })
+      .catch((error2) => {
+        console.log(error2);
+      });
+  };
 
   const handelRegister = (e) => {
     e.preventDefault();
@@ -81,18 +92,6 @@ const Register = () => {
                 <span className="label-text">Name</span>
               </label>
               <input
-                type="email"
-                name="email"
-                placeholder="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Photo URL</span>
-              </label>
-              <input
                 type="text"
                 name="name"
                 placeholder="name"
@@ -100,14 +99,28 @@ const Register = () => {
                 required
               />
             </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                type="text"
+                name="photo"
+                placeholder="photoURl"
+                className="input input-bordered"
+                required
+              />
+            </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
-                type="text"
-                name="photo"
-                placeholder="photoUrl"
+                type="email"
+                name="email"
+                placeholder="Email"
                 className="input input-bordered"
                 required
               />
